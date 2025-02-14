@@ -1,3 +1,4 @@
+// TaskInput.js
 import React, { useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 
@@ -11,7 +12,6 @@ const TaskInput = ({ addTask }) => {
     }
   };
 
-  // Функция обработки нажатия клавиши Enter
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleAddTask();
@@ -25,7 +25,7 @@ const TaskInput = ({ addTask }) => {
         variant="outlined"
         value={taskName}
         onChange={(e) => setTaskName(e.target.value)}
-        onKeyDown={handleKeyDown} // Обработчик Enter
+        onKeyDown={handleKeyDown}
         sx={{ borderRadius: '8px', flexGrow: 1 }}
       />
 
