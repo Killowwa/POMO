@@ -20,6 +20,7 @@ export const addTask = async (task) => {
     }
 };
 
+// ✅ Добавляем функцию для удаления задачи
 export const deleteTask = async (taskId) => {
     try {
         await axios.delete(`${API_BASE_URL}/tasks/${taskId}`);
