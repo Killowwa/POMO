@@ -9,5 +9,12 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
 server:
   port: 8080
+
+# ✅ Добавляем глобальный CORS
+cors:
+  allowed-origins: http://localhost:3000
+  allowed-methods: GET, POST, PUT, DELETE
+  allowed-headers: Content-Type, Authorization

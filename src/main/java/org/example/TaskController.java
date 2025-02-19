@@ -5,6 +5,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tasks")
+@CrossOrigin(origins = "http://localhost:3000")  // Разрешаем запросы с React
 public class TaskController {
     private final TaskService taskService;
 
