@@ -14,17 +14,30 @@ export const getTasks = async () => {
 
 export const addTask = async (task) => {
     try {
-        await axios.post(`${API_BASE_URL}/tasks`, task);
+        await axios.post(`${API_BASE_URL}/tasks`, task, {
+            headers: { "Content-Type": "application/json" }
+        });
     } catch (error) {
         console.error("Ошибка при добавлении задачи:", error);
     }
 };
 
-// ✅ Добавляем функцию для удаления задачи
 export const deleteTask = async (taskId) => {
     try {
         await axios.delete(`${API_BASE_URL}/tasks/${taskId}`);
     } catch (error) {
         console.error("Ошибка при удалении задачи:", error);
+    }
+};
+
+export const updateTask = async (id, task) => {
+    try {
+        const response = await axios.put(`${API_BASE_URL}/tasks/${id}`, task, {
+            headers: { "Content-Type": "application/json" }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Ошибка при обновлении задачи:", error);
+        return null;
     }
 };
