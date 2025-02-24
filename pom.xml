@@ -78,6 +78,9 @@
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
+          <compilerArgs>
+            <arg>-parameters</arg> <!-- 🔥 Добавляем поддержку имен параметров -->
+          </compilerArgs>
         </configuration>
       </plugin>
     </plugins>
