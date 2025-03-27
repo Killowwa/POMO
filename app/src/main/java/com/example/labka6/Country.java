@@ -3,7 +3,7 @@ package com.example.labka6;
 public class Country {
     private String countryName;
     private String flagName;
-
+    private int population;
 
     public Country(String countryName, String flagName, int population) {
         this.countryName = countryName;
