@@ -1,7 +1,7 @@
 package com.example.lab06;
 
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,9 +12,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private CountryAdapter adapter;
-    private List<Country> countryList;
+    RecyclerView recyclerView;
+    CountryAdapter countryAdapter;
+    List<Country> countryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,36 +22,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        TextView selectedText = findViewById(R.id.textView_selected);
 
-        adapter = new CountryAdapter(this, countryList, new CountryAdapter.OnItemClickListener() {
+        // Инициализация списка стран
+        countryList = new ArrayList<>();
+        countryList.add(new Country("China", "china", 1408000000));
+        countryList.add(new Country("United States", "usa", 340000000));
+        countryList.add(new Country("Russia", "russia", 146000000));
+
+        // Создаем адаптер и передаем обработчик кликов
+        countryAdapter = new CountryAdapter(this, countryList, new CountryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Country country) {
-                String message = "Selected : " + country.getCountryName() +
+                // Показать Toast с информацией о выбранной стране
+                String message = "Selected: " + country.getCountryName() +
                         " (Population: " + country.getPopulation() + ")";
-                selectedText.setText(message);
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
-        recyclerView.setAdapter(adapter);
 
-        countryList = getCountryList();
-        adapter = new CountryAdapter(this, countryList, new CountryAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Country country) {
-                String message = "Selected : " + country.getCountryName() +
-                        " (Population: " + country.getPopulation() + ")";
-                selectedText.setText(message);
-            }
-        });
-        recyclerView.setAdapter(adapter);
-    }
-
-    private List<Country> getCountryList() {
-        List<Country> list = new ArrayList<>();
-        list.add(new Country("Vietnam", "vietnam", 98000000));
-        list.add(new Country("United States", "usa", 320000000));
-        list.add(new Country("Russia", "russia", 142000000));
-        return list;
+        recyclerView.setAdapter(countryAdapter);
     }
 }

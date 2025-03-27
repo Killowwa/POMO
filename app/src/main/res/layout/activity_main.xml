@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#755A57"
+    android:background="@color/design_default_color_secondary_variant"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:background="@drawable/banner_title"
+        android:background="@color/material_dynamic_neutral_variant10"
         android:gravity="center"
         android:padding="16dp"
         android:text="Lab06 – Country List"
@@ -29,7 +29,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#BC987E"
+        android:background="@color/design_default_color_secondary"
         android:clipToPadding="false"
         android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@+id/textView_selected"
@@ -47,9 +47,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_rounded"
+        android:background="@color/design_default_color_secondary_variant"
         android:padding="8dp"
-        android:text="Selected :"
         android:textColor="#000"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
