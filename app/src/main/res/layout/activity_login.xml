@@ -5,6 +5,17 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#673AB7"
+        android:text="LAB7"
+        android:textAlignment="center"
+        android:textColor="#B39DDB"
+        android:textColorLink="#000000"
+        android:textSize="24sp" />
+
     <EditText
         android:id="@+id/ed_username"
         android:layout_width="match_parent"

@@ -41,23 +41,34 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Получаем данные из SharedPreferences
                 SharedPreferences credentials = getSharedPreferences(CREDENTIAL_SHARED_PREF, Context.MODE_PRIVATE);
-                String strUsername = credentials.getString("Username", null);
-                String strPassword = credentials.getString("Password", null);
+                String strUsername = edUsername.getText().toString();
 
-                String username_from_ed = edUsername.getText().toString();
+                // Извлекаем логин и пароль с суффиксом пользователя
+                String strStoredUsername = credentials.getString("Username_" + strUsername, null);
+                String strStoredPassword = credentials.getString("Password_" + strUsername, null);
+
                 String password_from_ed = edPassword.getText().toString();
 
-                if (strUsername != null && username_from_ed != null && strUsername.equalsIgnoreCase(username_from_ed)) {
-                    if (strPassword != null && password_from_ed != null && strPassword.equalsIgnoreCase(password_from_ed)) {
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                    }
+                // Проверяем, совпадают ли данные
+                if (strStoredUsername != null && strStoredPassword != null && strStoredPassword.equals(password_from_ed)) {
+                    // Успешный вход
+                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                    // Переходим в MainActivity
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("Username", strUsername);
+                    intent.putExtra("Password", strStoredPassword);
+                    startActivity(intent);
+                    finish(); // Закрываем LoginActivity
                 } else {
+                    // Неудачный вход
                     Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
     }
 }

@@ -1,24 +1,30 @@
 package com.example.labka7;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView tvUsername;
+    private TextView tvPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Инициализируем TextView
+        tvUsername = findViewById(R.id.tvUsername);
+        tvPassword = findViewById(R.id.tvPassword);
+
+        // Получаем данные из Intent
+        String username = getIntent().getStringExtra("Username");
+        String password = getIntent().getStringExtra("Password");
+
+        // Устанавливаем данные в TextView
+        tvUsername.setText("Username: " + username);
+        tvPassword.setText("Password: " + password);
     }
 }

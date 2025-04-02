@@ -35,16 +35,22 @@ public class SignUpActivity extends AppCompatActivity {
                 String strConfirmPassword = edConfirmPassword.getText().toString();
                 String strUsername = edUsername.getText().toString();
 
+                // Сравниваем пароли
                 if (strPassword != null && strConfirmPassword != null && strPassword.equalsIgnoreCase(strConfirmPassword)) {
+                    // Получаем SharedPreferences для хранения данных
                     SharedPreferences credentials = getSharedPreferences(CREDENTIAL_SHARED_PREF, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = credentials.edit();
-                    editor.putString("Password", strPassword);
-                    editor.putString("Username", strUsername);
-                    editor.apply();
 
+                    // Редактируем SharedPreferences для конкретного пользователя
+                    SharedPreferences.Editor editor = credentials.edit();
+                    editor.putString("Username_" + strUsername, strUsername);  // Сохраняем логин с суффиксом
+                    editor.putString("Password_" + strUsername, strPassword);  // Сохраняем пароль с суффиксом
+                    editor.apply();  // Применяем изменения
+
+                    // Завершаем активность, чтобы вернуться на экран логина
                     SignUpActivity.this.finish();
                 }
             }
         });
+
     }
 }
